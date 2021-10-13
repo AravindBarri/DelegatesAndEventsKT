@@ -4,28 +4,18 @@ using UnityEngine;
 
 public class DelegateScriptExample2 : MonoBehaviour
 {
-    delegate void MultiDelegate();
+    public delegate void MultiDelegate();
     MultiDelegate myMultiDelegate;
+    public static event MultiDelegate delegateEvent;
 
 
-    void Start()
+    void Update()
     {
-        myMultiDelegate += PowerUp;
-        myMultiDelegate += TurnRed;
-
-        if (myMultiDelegate != null)
+        
+        if (Input.GetMouseButtonDown(0))
         {
-            myMultiDelegate();
+            delegateEvent();
         }
     }
 
-    void PowerUp()
-    {
-        print("Orb is powering up!");
-    }
-
-    void TurnRed()
-    {
-        print("Now the color is red");
-    }
 }
