@@ -5,26 +5,32 @@ using UnityEngine;
 
 public class DelegateScript : MonoBehaviour
 {
-    delegate void MyDelegate(int num);
+    delegate int MyDelegate();
     MyDelegate myDelegate;
+    [SerializeField] int value = 10;
 
 
     void Start()
     {
-        myDelegate = PrintNum;
-        myDelegate(50);
-
-        myDelegate = DoubleNum;
-        myDelegate(50);
+        myDelegate += PrintNum;
+        //myDelegate += DoubleNum;
     }
 
-    void PrintNum(int num)
+    int PrintNum()
     {
-        print("Print Num: " + num);
+        //print("Print Num: " + value);
+        return (value);
     }
 
-    void DoubleNum(int num)
+    void DoubleNum()
     {
-        print("Double Num: " + num * 2);
+        print("Double Num: " + value * 2);
+    }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            print(myDelegate());
+        }
     }
 }
